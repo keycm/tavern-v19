@@ -1,0 +1,993 @@
+/* admin.css - Revised with enhanced box styling */
+
+/* --- 1. General Body and Layout --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+    margin: 0;
+    background-color: #f0f2f5; /* Lighter background for the entire page, matching image */
+    color: #333;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    line-height: 1.6; /* Improved readability */
+}
+
+/* Page Wrapper to enable flexbox for sidebar and content */
+.page-wrapper {
+    display: flex;
+    min-height: 100vh; /* Ensure it takes full height */
+    width: 100%;
+}
+
+/* --- 2. Sidebar Styling --- */
+.admin-sidebar {
+    width: 250px;
+    background-color: #2c3e50; /* Darker blue for sidebar, matching image */
+    color: #ecf0f1; /* Light text color */
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: fixed; /* Keep sidebar fixed */
+    height: 100%; /* Full height */
+    left: 0;
+    top: 0;
+    z-index: 900; /* Ensure it's above other content but below header */
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+
+.sidebar-header .home-icon {
+    width: 70px; /* Adjust size of the house icon */
+    height: 70px;
+    filter: invert(100%); /* Make icon white as it's on a dark background */
+    opacity: 0.9;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu .menu-item {
+    margin-bottom: 5px;
+}
+
+.sidebar-menu .menu-item a {
+    display: flex; /* Align icon and text */
+    align-items: center;
+    padding: 12px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+    border-left: 5px solid transparent; /* For active state highlight */
+}
+
+/* Using Material Icons, so img is less relevant here. Keeping for compatibility if images are still used */
+.sidebar-menu .menu-item a .material-icons {
+    margin-right: 15px;
+    font-size: 20px; /* Consistent icon size */
+    color: #ecf0f1; /* Ensure icon color matches text */
+}
+
+.sidebar-menu .menu-item a img { /* Fallback/alternative for image icons */
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    filter: invert(100%);
+    opacity: 0.8;
+}
+
+.sidebar-menu .menu-item a:hover {
+    background-color: #34495e; /* Slightly lighter blue on hover */
+    color: #fff;
+}
+
+.sidebar-menu .menu-item.active a {
+    background-color: #1abc9c; /* Green for active item, matching image */
+    color: #fff;
+    border-left-color: #f39c12; /* Orange highlight for active, matching image */
+    font-weight: bold;
+}
+
+.user-management-title {
+    color: #bdc3c7; /* Lighter grey for section title, matching image */
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 15px 20px 5px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- 3. Main Content Area --- */
+.admin-content-area {
+    flex-grow: 1; /* Take remaining space */
+    margin-left: 250px; /* Offset for the fixed sidebar */
+    padding: 0; /* Remove padding here, add to dashboard-main-content */
+    padding-top: 70px; /* Space for the fixed header */
+}
+
+/* --- 4. Header Styling --- */
+.main-header {
+    background-color: #fff; /* White background for header, matching image */
+    color: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end; /* Push content to the right */
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Keep header fixed */
+    width: calc(100% - 250px); /* Adjust width for sidebar */
+    top: 0;
+    right: 0;
+    z-index: 950; /* Above content, below modal */
+    height: 70px; /* Fixed height for header */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.header-content {
+    display: flex;
+    justify-content: flex-end; /* Align right */
+    align-items: center;
+    width: auto; /* Let content dictate width */
+    gap: 15px; /* Space between elements */
+}
+
+.admin-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between user name and sign out */
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+.admin-header-right img { /* For the user avatar */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+.admin-header-right .admin-role {
+    font-size: 0.9em;
+    color: #777;
+    margin-left: 5px;
+}
+
+/* --- 5. Dashboard Main Content & Sections --- */
+.dashboard-main-content {
+    padding: 20px; /* Add padding to the main content wrapper */
+}
+
+/* Dashboard Heading */
+.dashboard-heading {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Dashboard Summary Boxes */
+.dashboard-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden; /* For the background icon */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+    border-bottom: 5px solid transparent; /* Base border for coloring */
+}
+
+.summary-box:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.summary-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #777;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.summary-box p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.summary-box .box-icon {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 60px; /* Large icon */
+    opacity: 0.15; /* Subtle background */
+    color: currentColor; /* Inherit color from the box type */
+}
+
+/* Specific Summary Box Colors */
+.summary-box.total {
+    border-bottom-color: #007bff; /* Blue */
+    color: #007bff; /* Icon color */
+}
+.summary-box.pending {
+    border-bottom-color: #ffc107; /* Orange */
+    color: #ffc107; /* Icon color */
+}
+.summary-box.confirmed {
+    border-bottom-color: #28a745; /* Green */
+    color: #28a745; /* Icon color */
+}
+.summary-box.cancelled {
+    border-bottom-color: #dc3545; /* Red */
+    color: #dc3545; /* Icon color */
+}
+
+/* Dashboard Statistics & Calendar Wrapper */
+.dashboard-stats-and-calendar {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Two columns: stats (2/3) and calendar (1/3) */
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+    border-bottom-color: #17a2b8; /* Info blue for stats */
+    color: #17a2b8; /* Icon color */
+}
+
+.stat-box:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.stat-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #777;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.stat-box p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.stat-box .box-icon {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 60px;
+    opacity: 0.15;
+    color: currentColor;
+}
+
+.calendar-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+    border-bottom: 5px solid #6c757d; /* Dark grey for calendar */
+    color: #6c757d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+}
+
+.calendar-box:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.calendar-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Calendar Widget Specific Styles */
+#calendar {
+    min-height: auto;
+    border: none;
+    display: block;
+    padding: 10px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.calendar-header .calendar-nav-btn {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    color: #495057;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.calendar-header .calendar-nav-btn:hover {
+    background-color: #dee2e6;
+}
+
+.calendar-month-year {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #343a40;
+    margin: 0;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 days a week */
+    gap: 5px;
+    text-align: center;
+}
+
+.calendar-day-name {
+    font-weight: bold;
+    background-color: #e9ecef;
+    padding: 8px 0;
+    border-radius: 4px;
+    color: #495057;
+    font-size: 0.9em;
+}
+
+.calendar-day {
+    padding: 10px 0;
+    background-color: #f8f9fa;
+    border: 1px solid #e2e6ea;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+.calendar-day.empty {
+    background-color: #f0f2f5; /* Background color of the main content area */
+    border: 1px solid transparent; /* No border for empty days */
+}
+
+.calendar-day.current-day {
+    background-color: #007bff; /* Highlight color for current day */
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+/* --- 6. Recent Reservations Section (for both admin.php and reservation.php) --- */
+.recent-reservations-section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+    margin-top: 30px;
+}
+
+.recent-reservations-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* For the search input visible in Recent Reservations section (top right) */
+.recent-reservations-section .search-input-top,
+.reservation-page-header .search-input { /* Apply to reservation.php search too */
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px; /* Pill shape */
+    font-size: 14px;
+    width: 200px; /* Adjust as needed */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>'); /* Search icon */
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    padding-left: 40px; /* Space for icon */
+}
+
+/* --- 7. Table Styling (for both admin.php and reservation.php) --- */
+/* The old .reservations-heading and .reservation-controls are removed from HTML or hidden */
+.reservations-heading,
+.reservation-controls {
+    display: none; /* Hide the old heading and controls as per new design */
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+table thead th {
+    background-color: #f8f8f8;
+    color: #555;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+table tbody tr:hover {
+    background-color: #fcfcfc; /* Lighter hover for rows */
+}
+
+/* Customer Info in Table */
+.customer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.customer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow for badge */
+}
+
+.status-badge.pending {
+    background-color: #fff3cd; /* Lighter yellow */
+    color: #856404;
+}
+
+.status-badge.confirmed {
+    background-color: #d4edda; /* Lighter green */
+    color: #155724;
+}
+
+.status-badge.cancelled,
+.status-badge.declined { /* Combined for consistency */
+    background-color: #f8d7da; /* Lighter red */
+    color: #721c24;
+}
+
+/* Action Buttons in Table */
+.actions {
+    white-space: nowrap;
+}
+
+.btn { /* General button style, applies to small and modal buttons */
+    padding: 8px 16px; /* Adjusted padding for better click area */
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    margin-right: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-decoration: none; /* For button-like links */
+    display: inline-flex; /* For consistent icon alignment if added */
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:last-child {
+    margin-right: 0;
+}
+
+/* Small button specific overrides */
+.btn.btn-small {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.btn.view-btn,
+.btn.view-edit-btn { /* Combined for consistency in reservation.php */
+    background-color: #007bff; /* Blue for view */
+    color: white;
+}
+.btn.view-btn:hover,
+.btn.view-edit-btn:hover {
+    background-color: #0069d9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn.confirm-btn {
+    background-color: #28a745; /* Success green */
+    color: white;
+}
+.btn.confirm-btn:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+button.delete-btn, .btn.delete-btn { /* FIXED: Make selector more specific */
+    background-color: #e74c3c !important; /* Red color for delete */
+    color: white !important;
+}
+button.delete-btn:hover, .btn.delete-btn:hover {
+    background-color: #c0392b !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* --- 8. Modal Styling --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px; /* Slightly larger modal */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #2c3e50; /* Darker heading */
+    font-size: 26px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+/* For simple text details within modal (admin.php) */
+#modalDetails {
+    text-align: center;
+}
+
+.modal-content p {
+    margin-bottom: 12px;
+    line-height: 1.8;
+    color: #555;
+    font-size: 15px;
+}
+
+.modal-content strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.close-button {
+    color: #888;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.modal-actions {
+    margin-top: 30px;
+    text-align: right;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+/* Modal specific button styles (using the general .btn now) */
+.modal-actions .btn {
+    margin-left: 10px; /* Adjust spacing between modal buttons */
+}
+
+.modal-actions .modal-confirm-btn { /* Keep specific class for confirmation in admin.php */
+    background-color: #28a745;
+    color: white;
+}
+.modal-actions .modal-confirm-btn:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.modal-actions .modal-decline-btn {
+    background-color: #ffc107;
+    color: #333;
+}
+.modal-actions .modal-decline-btn:hover {
+    background-color: #e0a800;
+    transform: translateY(-1px);
+}
+
+.modal-actions .modal-save-btn { /* New button for reservation.php edit form */
+    background-color: #007bff;
+    color: white;
+}
+.modal-actions .modal-save-btn:hover {
+    background-color: #0069d9;
+    transform: translateY(-1px);
+}
+
+/* Form Group Styling for Modals (specifically reservation.php's edit modal) */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* THIS IS THE FIX: Added input[type="password"] */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="number"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+
+/* --- 9. Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .admin-sidebar {
+        width: 180px; /* Slightly narrower sidebar */
+    }
+    .admin-content-area {
+        margin-left: 180px;
+    }
+    .main-header {
+        width: calc(100% - 180px);
+    }
+    .recent-reservations-section h2 .search-input-top,
+    .reservation-page-header .search-input {
+        width: 180px; /* Adjust search input width for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        flex-direction: column; /* Stack sidebar and content */
+    }
+    .admin-sidebar {
+        position: relative; /* Allow sidebar to flow with content */
+        width: 100%;
+        height: auto;
+        padding-bottom: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .sidebar-header {
+        display: none; /* Hide large icon in mobile header */
+    }
+    .sidebar-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Center menu items */
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .sidebar-menu .menu-item {
+        flex: 1 1 auto; /* Allow items to grow/shrink */
+        text-align: center;
+        margin: 0; /* Remove individual item margins */
+    }
+    .sidebar-menu .menu-item a {
+        flex-direction: column; /* Stack icon and text */
+        padding: 10px 5px;
+        font-size: 12px;
+        border-left: none; /* No side border in mobile */
+        border-bottom: 3px solid transparent; /* Bottom border for active */
+    }
+    .sidebar-menu .menu-item.active a {
+        border-left-color: transparent;
+        border-bottom-color: #f39c12; /* Orange highlight for active at bottom */
+    }
+    .sidebar-menu .menu-item a .material-icons {
+        margin-right: 0;
+        margin-bottom: 5px;
+        width: 24px; /* Adjust size for mobile icons */
+        height: 24px;
+        font-size: 24px;
+    }
+    .sidebar-menu .menu-item a img { /* Fallback/alternative for image icons */
+        margin-right: 0;
+        margin-bottom: 5px;
+        width: 24px;
+        height: 24px;
+    }
+    .user-management-title {
+        display: none; /* Hide user management title on small screens */
+    }
+    .user-management-menu {
+        display: flex; /* Display as part of main menu */
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+    }
+    .user-management-menu .menu-item {
+        flex: 1 1 auto;
+        text-align: center;
+        margin: 0;
+    }
+    .user-management-menu .menu-item a {
+        flex-direction: column;
+        padding: 10px 5px;
+        font-size: 12px;
+        border-bottom: 3px solid transparent;
+    }
+    .user-management-menu .menu-item.active a {
+        border-bottom-color: #f39c12;
+    }
+
+    .admin-content-area {
+        margin-left: 0;
+        padding: 15px;
+        padding-top: 70px; /* Adjust for header height */
+    }
+    .main-header {
+        width: 100%;
+        justify-content: space-between; /* Space out elements */
+        padding: 10px 15px;
+    }
+    .admin-header-right {
+        gap: 5px;
+    }
+
+    .dashboard-summary {
+        grid-template-columns: 1fr; /* Stack boxes on small screens */
+    }
+    .dashboard-stats-and-calendar {
+        grid-template-columns: 1fr; /* Stack on small screens */
+    }
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    .recent-reservations-section h2 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .recent-reservations-section .search-input-top,
+    .reservation-page-header .search-input {
+        width: 100%; /* Full width search bar on small screens */
+        max-width: 300px; /* Prevent it from getting too wide on tablets */
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-container { /* This class doesn't seem to be in use in your PHP files, but keeping its styles for completeness */
+        padding: 15px;
+    }
+    .summary-box h3, .stat-box h3 {
+        font-size: 14px;
+    }
+    .summary-box p, .stat-box p {
+        font-size: 28px;
+    }
+    table th,
+    table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    .btn.btn-small {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h2 {
+        font-size: 22px;
+    }
+    .modal-content p {
+        font-size: 14px;
+    }
+    .modal-actions .btn {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}
+
+
+/* Add this to your admin.css file */
+.calendar-container {
+    margin-bottom: 20px;
+}
+
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.block-date-form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.feature-btn[data-featured="1"] {
+    background-color: #28a745;
+    color: white;
+}
+
+/* --- NEW STYLES for tabs --- */
+.tabs {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.tab-link {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab-link:hover {
+    background-color: #ddd;
+}
+
+.tab-link.active {
+    background-color: #ccc;
+}
+
+.tab-content {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* --- NEW: Pagination Styles --- */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    padding: 10px 0;
+    gap: 10px;
+}
+#pageNumbers {
+    display: flex;
+    gap: 5px;
+}
+.page-number {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    background-color: #fff;
+    color: #333;
+    font-weight: 500;
+}
+.page-number:hover {
+    background-color: #f0f0f0;
+}
+.page-number.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    font-weight: bold;
+}
+.pagination-container .btn:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
