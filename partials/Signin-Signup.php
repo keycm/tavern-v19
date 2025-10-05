@@ -16,9 +16,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary modal-btn">Sign In</button>
                 </form>
-                <div class="social-login">
-                     <a href="google-oauth.php" class="btn btn-google modal-btn"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign In with Google</a>
-                </div>
                 <p class="modal-bottom-text">Don't have an account? <a href="#" class="switch-to-register">Register here</a></p>
             </div>
         </div>
@@ -49,9 +46,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary modal-btn">Register</button>
                 </form>
-                <div class="social-login">
-                    <a href="google-oauth.php" class="btn btn-google modal-btn"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign Up with Google</a>
-                </div>
                 <p class="modal-bottom-text">Already have an account? <a href="#" class="switch-to-signin">Sign In here</a></p>
             </div>
         </div>
